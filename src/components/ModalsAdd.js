@@ -1,18 +1,29 @@
-import React, { Component } from 'react'
-import { ModalHeader, ModalBody, Form, FormGroup, Label, Input, FormText, ModalFooter, Button, Col, Modal } from 'reactstrap'
+import React, { Component } from 'react';
+import {
+    ModalHeader,
+    ModalBody,
+    Form,
+    FormGroup,
+    Label,
+    Input,
+    FormText,
+    ModalFooter,
+    Button,
+    Col,
+    Modal,
+} from 'reactstrap';
 
-import { connect } from 'react-redux'
-import { addBookActionAdmin } from '../redux/actions/books'
+import { connect } from 'react-redux';
+import { addBookActionAdmin } from '../redux/actions/books';
 
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-
-toast.configure()
+toast.configure();
 
 export class ModalsAdd extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             data: {
                 title: '',
@@ -27,16 +38,16 @@ export class ModalsAdd extends Component {
             isFileMax: false,
             isFileType: false,
             isEmptyImage: false,
-        }
+        };
     }
 
     notifySuccess = (message) => {
-        toast.success(message, { position: toast.POSITION.TOP_RIGHT })
-    }
+        toast.success(message, { position: toast.POSITION.TOP_RIGHT });
+    };
 
     notifyDanger = (message) => {
-        toast.error(message, { position: toast.POSITION.TOP_RIGHT })
-    }
+        toast.error(message, { position: toast.POSITION.TOP_RIGHT });
+    };
 
     handleOnChangeAddBook = (event) => {
         let newData = { ...this.state.data };
@@ -50,7 +61,7 @@ export class ModalsAdd extends Component {
         this.setState({
             data: {
                 ...this.state.data,
-                image: null
+                image: null,
             },
             isEmptyImage: false,
             isFileMax: false,
@@ -85,24 +96,30 @@ export class ModalsAdd extends Component {
             isEmptyTitle: false,
             isEmptyDescription: false,
             isEmptyImage: false,
-        })
+        });
 
-        const { title, image, description, genre_id, author_id, status_id, } = this.state.data;
+        const {
+            title,
+            image,
+            description,
+            genre_id,
+            author_id,
+            status_id,
+        } = this.state.data;
 
         if (image === null) {
             this.setState({
-                isEmptyImage: true
-            })
+                isEmptyImage: true,
+            });
         } else if (title === '') {
             this.setState({
-                isEmptyTitle: true
-            })
+                isEmptyTitle: true,
+            });
         } else if (description === '') {
             this.setState({
-                isEmptyDescription: true
-            })
+                isEmptyDescription: true,
+            });
         } else {
-
             const formData = new FormData();
             formData.set('title', title);
             formData.set('description', description);
@@ -118,13 +135,13 @@ export class ModalsAdd extends Component {
             };
 
             try {
-                await this.props.addBookAction(formData, config)
-                this.props.toggle()
-                this.notifySuccess('Success Add Book')
-                this.props.refreshAdmin()
+                await this.props.addBookAction(formData, config);
+                this.props.toggle();
+                this.notifySuccess('Success Add Book');
+                // this.props.refreshAdmin()
             } catch (error) {
-                this.props.toggle()
-                return this.notifyDanger('Failed Add Book')
+                this.props.toggle();
+                return this.notifyDanger('Failed Add Book');
             }
         }
     };
@@ -134,103 +151,152 @@ export class ModalsAdd extends Component {
         return (
             <>
                 <Modal isOpen={this.props.modal} toggle={this.props.toggle}>
-                    <ModalHeader toggle={this.props.toggle}>Add Book</ModalHeader>
+                    <ModalHeader toggle={this.props.toggle}>
+                        Add Book
+                    </ModalHeader>
                     <ModalBody>
                         <Form>
                             <FormGroup row>
                                 <Label sm={3}>Title</Label>
                                 <Col sm={9}>
-                                    <Input type="text" name="title" onChange={this.handleOnChangeAddBook} />
-                                    {
-                                        this.state.isEmptyTitle
-                                            ? <FormText color="danger">Title Empty</FormText>
-                                            : ''
-                                    }
+                                    <Input
+                                        type="text"
+                                        name="title"
+                                        onChange={this.handleOnChangeAddBook}
+                                    />
+                                    {this.state.isEmptyTitle ? (
+                                        <FormText color="danger">
+                                            Title Empty
+                                        </FormText>
+                                    ) : (
+                                        ''
+                                    )}
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label sm={3}>Genre</Label>
                                 <Col sm={9}>
-                                    <Input type="select" name="genre_id" onChange={this.handleOnChangeAddBook}>
-                                        {
-                                            this.props.genres.map(genre => {
-                                                return (
-                                                    <option key={genre.id} value={genre.id}>{genre.name}</option>
-                                                )
-                                            })
-                                        }
+                                    <Input
+                                        type="select"
+                                        name="genre_id"
+                                        onChange={this.handleOnChangeAddBook}
+                                    >
+                                        {this.props.genres.map((genre) => {
+                                            return (
+                                                <option
+                                                    key={genre.id}
+                                                    value={genre.id}
+                                                >
+                                                    {genre.name}
+                                                </option>
+                                            );
+                                        })}
                                     </Input>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label sm={3}>Author</Label>
                                 <Col sm={9}>
-                                    <Input type="select" name="author_id" onChange={this.handleOnChangeAddBook}>
-                                        {
-                                            this.props.authors.map(author => {
-                                                return (
-                                                    <option key={author.id} value={author.id}>{author.name}</option>
-                                                )
-                                            })
-                                        }
+                                    <Input
+                                        type="select"
+                                        name="author_id"
+                                        onChange={this.handleOnChangeAddBook}
+                                    >
+                                        {this.props.authors.map((author) => {
+                                            return (
+                                                <option
+                                                    key={author.id}
+                                                    value={author.id}
+                                                >
+                                                    {author.name}
+                                                </option>
+                                            );
+                                        })}
                                     </Input>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label sm={3}>Status</Label>
                                 <Col sm={9}>
-                                    <Input type="select" name="status_id" onChange={this.handleOnChangeAddBook}>
-                                        {
-                                            this.props.status.map(status => {
-                                                return (
-                                                    <option key={status.id} value={status.id}>{status.name}</option>
-                                                )
-                                            })
-                                        }
+                                    <Input
+                                        type="select"
+                                        name="status_id"
+                                        onChange={this.handleOnChangeAddBook}
+                                    >
+                                        {this.props.status.map((status) => {
+                                            return (
+                                                <option
+                                                    key={status.id}
+                                                    value={status.id}
+                                                >
+                                                    {status.name}
+                                                </option>
+                                            );
+                                        })}
                                     </Input>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label sm={3}>Image</Label>
                                 <Col sm={9}>
-                                    <Input type="file" name="image" onChange={this.handleChangeFile} />
-                                    {
-                                        this.state.isEmptyImage
-                                            ? <FormText color="danger">Image Empty</FormText>
-                                            : ''
-                                    }
-                                    {
-                                        this.state.isFileMax
-                                            ? <FormText color="danger">Max 1mb</FormText>
-                                            : ''
-                                    }
-                                    {
-                                        this.state.isFileType
-                                            ? <FormText color="danger">File type must JPG/JPEG/PNG/GIF</FormText>
-                                            : ''
-                                    }
+                                    <Input
+                                        type="file"
+                                        name="image"
+                                        onChange={this.handleChangeFile}
+                                    />
+                                    {this.state.isEmptyImage ? (
+                                        <FormText color="danger">
+                                            Image Empty
+                                        </FormText>
+                                    ) : (
+                                        ''
+                                    )}
+                                    {this.state.isFileMax ? (
+                                        <FormText color="danger">
+                                            Max 1mb
+                                        </FormText>
+                                    ) : (
+                                        ''
+                                    )}
+                                    {this.state.isFileType ? (
+                                        <FormText color="danger">
+                                            File type must JPG/JPEG/PNG/GIF
+                                        </FormText>
+                                    ) : (
+                                        ''
+                                    )}
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label sm={3}>Description</Label>
                                 <Col sm={9}>
-                                    <Input type="textarea" name="description" onChange={this.handleOnChangeAddBook} />
-                                    {
-                                        this.state.isEmptyDescription
-                                            ? <FormText color="danger">Description Empty</FormText>
-                                            : ''
-                                    }
+                                    <Input
+                                        type="textarea"
+                                        name="description"
+                                        onChange={this.handleOnChangeAddBook}
+                                    />
+                                    {this.state.isEmptyDescription ? (
+                                        <FormText color="danger">
+                                            Description Empty
+                                        </FormText>
+                                    ) : (
+                                        ''
+                                    )}
                                 </Col>
                             </FormGroup>
                         </Form>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="success" onClick={this.handleSubmit}>Add Book</Button>{' '}
-                        <Button color="secondary" onClick={this.props.toggle}>Cancel</Button>
+                        <Button color="success" onClick={this.handleSubmit}>
+                            Add Book
+                        </Button>{' '}
+                        <Button color="secondary" onClick={this.props.toggle}>
+                            Cancel
+                        </Button>
                     </ModalFooter>
                 </Modal>
             </>
-        )
+        );
     }
 }
 
@@ -238,17 +304,17 @@ const mapStateToProps = ({ books }) => {
     return {
         isFulfilled: books.isFulfilled,
         isLoading: books.isLoading,
-        isRejected: books.isRejected
-    }
-}
+        isRejected: books.isRejected,
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
     // console.log(dispatch)
     return {
         addBookAction: (formData, config) => {
-            dispatch(addBookActionAdmin(formData, config))
-        }
-    }
-}
+            dispatch(addBookActionAdmin(formData, config));
+        },
+    };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalsAdd)
+export default connect(mapStateToProps, mapDispatchToProps)(ModalsAdd);
