@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/libmaster-react/static/css/main.b795eb91.chunk.css",
+    "main.js": "/libmaster-react/static/js/main.cf75467e.chunk.js",
+    "main.js.map": "/libmaster-react/static/js/main.cf75467e.chunk.js.map",
+    "runtime-main.js": "/libmaster-react/static/js/runtime-main.2fb4ccd2.js",
+    "runtime-main.js.map": "/libmaster-react/static/js/runtime-main.2fb4ccd2.js.map",
+    "static/css/2.9d6f4434.chunk.css": "/libmaster-react/static/css/2.9d6f4434.chunk.css",
+    "static/js/2.005b38f0.chunk.js": "/libmaster-react/static/js/2.005b38f0.chunk.js",
+    "static/js/2.005b38f0.chunk.js.map": "/libmaster-react/static/js/2.005b38f0.chunk.js.map",
+    "index.html": "/libmaster-react/index.html",
+    "precache-manifest.badfe182f5d57208d07b31a6daca8e18.js": "/libmaster-react/precache-manifest.badfe182f5d57208d07b31a6daca8e18.js",
+    "service-worker.js": "/libmaster-react/service-worker.js",
+    "static/css/2.9d6f4434.chunk.css.map": "/libmaster-react/static/css/2.9d6f4434.chunk.css.map",
+    "static/css/main.b795eb91.chunk.css.map": "/libmaster-react/static/css/main.b795eb91.chunk.css.map",
+    "static/js/2.005b38f0.chunk.js.LICENSE.txt": "/libmaster-react/static/js/2.005b38f0.chunk.js.LICENSE.txt",
+    "static/media/login.css": "/libmaster-react/static/media/backgorund.368e383b.jpg",
+    "static/media/logoLogin.png": "/libmaster-react/static/media/logoLogin.ae5ba964.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2fb4ccd2.js",
+    "static/css/2.9d6f4434.chunk.css",
+    "static/js/2.005b38f0.chunk.js",
+    "static/css/main.b795eb91.chunk.css",
+    "static/js/main.cf75467e.chunk.js"
+  ]
+}
